@@ -16,3 +16,6 @@ e:
 f:
 	g++ F.cpp -o f.exe
 	f.exe
+practice:
+	g++ practice.cpp -o practice.exe
+	practice.exe
