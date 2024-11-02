@@ -1,36 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-vector<int> dsu;
-int find(int v) {
-	if (dsu[v] == v) return v;
-	return dsu[v] = find(dsu[v]);
-}
-
 int main() {
 	ios::sync_with_stdio(0); cin.tie(0);
 	int tc = 1; 
-	// cin >> tc;
+	cin >> tc;
 	for (int tt = 0; tt < tc; tt++) {
-		int n, m; 
-		cin >> n >> m;
-		dsu.resize(n + 4);
-		vector<int> ans(n + 4);
-		for (int i = 1; i <= n + 3; i++) dsu[i] = i;
-		for (int i = 0; i < m; i++) {
-			int l, r, x; cin >> l >> r >> x;
-			int cur = find(l);
-			while (cur <= r) {
-				if (cur == x) cur++;
-				else {
-					ans[cur] = x;
-					dsu[cur] = cur + 1;
-				}
-				cur = find(cur);
+		int n; cin >> n;
+		vector<int> a(n);
+		int mx = -INT_MAX;
+		for (int& i : a) cin >> i, mx = max(mx, i);
+		long long lo = 0, hi = 1e9;
+		int x = INT_MAX;
+		while (lo <= hi) {
+			long long m = (lo + hi) / 2;
+			long long sm = m, avg = 0;
+			for (int i = 0; i < n; i++) sm += a[i];
+			avg = sm / n;
+			int unhappy = 0;
+			for (int i : A) {
+				if (i < avg) unhappy++;
 			}
+			if (unhappy > n / 2) { x = m, hi = m - 1; }
+			else lo = m + 1;
 		}
-		for (int i = 1; i <= n; i++) cout << ans[i] << ' ';
-		cout << endl;
+		cout << (x == INT_MAX ? -1 : x) << endl; 
 	}
 }
