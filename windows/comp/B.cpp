@@ -7,17 +7,24 @@ int main() {
 	int tc = 1; 
 	cin >> tc;
 	while (tc--) {
-        int n, m, q; cin >> n >> m >> q;
-		int l, r; cin >> l >> r;
-		for (int i = 0; i < q; i++) {
-			int p; cin >> p;
-			if (l < p and r < p) {
-				cout << n - max(r, l) << endl;
-			} else if (l > p and r > p) {
-				cout << min(r, l) - 1 << endl;
-			} else {
-				cout << abs(r - l) / 2 << endl;
-			}
+        int n, k; cin >> n >> k;
+		map<int,long long> mp;
+		vector<pair<int,long long>> bottles;
+		for (int i = 0; i < k; i++) {
+			int b; long long c; cin >> b >> c;
+			if (mp.find(b) != mp.end()) mp[b] += c;
+			else mp[b] = c;
 		}
+		for (auto x : mp) bottles.push_back(make_pair(x.first, x.second));
+		auto SortBottles = [&](pair<int,long long> a, pair<int,long long> b) {
+			return a.second > b.second;
+		};
+		sort(bottles.begin(), bottles.end(), SortBottles);
+		long long answer = 0;
+		for (int i = 0; i < bottles.size(); i++) {
+			if (i >= n) break;
+			answer += bottles[i].second;
+		}
+		cout << answer << endl;
     }
 }
