@@ -1,23 +1,41 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <deque>
+#include <random>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <tuple>
+#include <unordered_map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
 using namespace std;
 
+void testcase() {
+
+}
 
 int main() {
-	ios::sync_with_stdio(0); cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
 	int tc = 1; 
 	cin >> tc;
-	while (tc--) {
-        int n, m, q; cin >> n >> m >> q;
-		int l, r; cin >> l >> r;
-		for (int i = 0; i < q; i++) {
-			int p; cin >> p;
-			if (l < p and r < p) {
-				cout << n - max(r, l) << endl;
-			} else if (l > p and r > p) {
-				cout << min(r, l) - 1 << endl;
-			} else {
-				cout << abs(r - l) / 2 << endl;
-			}
-		}
-    }
+	for (int t = 0; t < tc; t++)
+		testcase();
+	return 0;
 }

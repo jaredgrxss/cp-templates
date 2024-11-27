@@ -1,37 +1,41 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <deque>
+#include <random>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <tuple>
+#include <unordered_map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
 using namespace std;
 
+void testcase() {
+
+}
 
 int main() {
-	ios::sync_with_stdio(0); cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
 	int tc = 1; 
 	cin >> tc;
-	while (tc--) {
-        int n; cin >> n;
-		vector<char> vowels{
-			'a', 'e', 'i', 'o', 'u'
-		};
-		if (n <= 5) {
-			for (int i = 0; i < n; i++) cout << vowels[i];
-		} else {
-			int each = n / 5;
-			int rem = n % 5;
-			map<char,int> cnt;
-			for (int i = 0; i < 5; i++) {
-				cnt[vowels[i]] = each;
-			}
-			int inc = 0;
-			while (rem--) {
-				cnt[vowels[inc]]++;
-				inc = (inc + 1) % 5;
-			}
-			for (auto x : cnt) {
-				for (int i = 0; i < x.second; i++) {
-					cout << x.first;
-				}
-			}
-			
-		}
-		cout << endl;
-    }
+	for (int t = 0; t < tc; t++)
+		testcase();
+	return 0;
 }

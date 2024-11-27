@@ -1,29 +1,41 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <deque>
+#include <random>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <tuple>
+#include <unordered_map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
 using namespace std;
 
+void testcase() {
+
+}
+
 int main() {
-	ios::sync_with_stdio(0); cin.tie(0);
+	ios::sync_with_stdio(0); 
+	cin.tie(0);
 	int tc = 1; 
 	cin >> tc;
-	while (tc--) {
-        int n, m, q; cin >> n >> m >> q;
-		int mx = -INT_MAX, mn = INT_MAX;
-		vector<int> B(m);
-		for (int& i : B) cin >> i, mx = max(mx, i), mn = min(mn, i);
-		sort(B.begin(), B.end());
-		for (int i = 0; i < q; i++) {
-			int p; cin >> p;
-			if (p < mn) {
-				cout << mn - 1 << endl;
-			} else if (p > mx) {
-				cout << n - mx << endl;
-			} else {
-				auto it = upper_bound(B.begin(), B.end(), p);
-				if (it != B.begin()) it--;
-				int lw = *it;
-				int hw = *upper_bound(B.begin(), B.end(), p);
-				cout << (hw - lw) / 2 << endl;
-			}
-		}
-    }
+	for (int t = 0; t < tc; t++)
+		testcase();
+	return 0;
 }
