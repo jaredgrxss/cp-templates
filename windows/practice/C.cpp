@@ -9,21 +9,32 @@ int main() {
 		int n; cin >> n;
 		vector<long long> a(n);
 		for (long long& i : a) cin >> i;
-		sort(a.begin(), a.end());
-		long long lo = 0, hi = 1e18;
-		long long x = INT_MAX;
-		while (lo <= hi) {
-			long long m = (hi + lo) / 2;
-			double avg = 0;
-			a[n - 1] += m;
-			for (int i = 0; i < n; i++) avg += (double) a[i];
-			avg /= (double) n;
-			int unhappy = 0;
-			for (double i : a) if (i < avg / 2.0) unhappy++;
-			a[n - 1] -= m;
-			if (unhappy > n / 2) { x = m, hi = m - 1; }
-			else lo = m + 1;
+		int can = 1;
+		for (int i = 1; i < n; i++) {
+			if (a[i] == 1 and a[i - 1] > 1) can = 0;
 		}
-		cout << (x == INT_MAX ? -1 : x) << endl; 
+		if (!can) {
+			cout << -1 << endl;
+		} else {
+			vector<long long> ops(n);
+			for (int i = 1; i < n; i++) {
+				long long v = a[i - 1], v2 = a[i];
+				while (sqrt(v2) >= v and v2 != 1) { v2 = sqrt(v2); ops[i]++; }
+				ops[i] = -ops[i];
+			}
+			// for (int i = 0; i < n; i++) cout << ops[i] << ' ';
+			// cout << endl;
+			for (int i = 1; i < n; i++) {
+				long long v = a[i - 1], v2 = a[i];
+				if (ops[i - 1] >= 0 and v2 < v) ops[i] += ops[i - 1];
+				else if (v2 >= v) ops[i] += ops[i - 1];
+				while (v2 < v) { v2 *= v2; ops[i]++; }
+			}
+			// for (int i = 0; i < n; i++) cout << ops[i] << ' ';
+			// cout << endl;
+			long long answer = 0;
+			for (int i : ops) answer += (i > 0) ? i : 0;
+			cout << answer << endl;
+		}
 	}
 }

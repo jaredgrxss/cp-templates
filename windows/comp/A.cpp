@@ -8,30 +8,23 @@ int main() {
 	cin >> tc;
 	while (tc--) {
         int n; cin >> n;
-		vector<char> vowels{
-			'a', 'e', 'i', 'o', 'u'
-		};
-		if (n <= 5) {
-			for (int i = 0; i < n; i++) cout << vowels[i];
-		} else {
-			int each = n / 5;
-			int rem = n % 5;
-			map<char,int> cnt;
-			for (int i = 0; i < 5; i++) {
-				cnt[vowels[i]] = each;
+		vector<int> A(n);
+		for (int& i : A) cin >> i;
+		int perfect = 1;
+		for (int i = 1; i < n; i++) {
+			int back = A[i - 1], curr = A[i];
+			if (i < n - 1) {
+				int front = A[i + 1];
+				if ((abs(curr - back)== 7 or abs(curr - back) == 5) and (abs(curr - front) == 7 or abs(curr - front) == 5)) {
+					continue;
+				} else { perfect = 0; break; }
+			} else {
+				if (abs(curr - back) == 7 or abs(curr - back) == 5) {
+					continue;
+				} else { perfect = 0; break; }
 			}
-			int inc = 0;
-			while (rem--) {
-				cnt[vowels[inc]]++;
-				inc = (inc + 1) % 5;
-			}
-			for (auto x : cnt) {
-				for (int i = 0; i < x.second; i++) {
-					cout << x.first;
-				}
-			}
-			
 		}
-		cout << endl;
+		if (perfect) cout << "YES" << endl;
+		else cout << "NO" << endl;
     }
 }

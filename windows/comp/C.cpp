@@ -1,36 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-const string narek = "narek";
-
+ 
+ 
+bool partOf(string& s, int idx) {
+	if (s.substr(idx, 4) == "1100") return true;
+	if (idx - 1 >= 0 and s.substr(idx - 1, 4) == "1100") return true;
+	if (idx - 2 >= 0 and s.substr(idx - 2, 4) == "1100") return true;
+	if (idx - 3 >= 0 and s.substr(idx - 3, 4) == "1100") return true;
+	return false;;
+}
+ 
 int main() {
 	ios::sync_with_stdio(0); cin.tie(0);
 	int tc = 1; 
 	cin >> tc;
 	while (tc--) {
-        int n, m; cin >> n >> m;
-		vector<string> s(n);
-		for (string& i : s) cin >> i;
-		vector<int> dp(5, -1e9), ndp;
-		dp[0] = 0;
-		for (int i = 0; i < n; i++) {
-			ndp = dp;
-			for (int j = 0; j < 5; j++) {
-				if (dp[j] == -INT_MAX) continue; 
-				int cnt = 0, next = j;
-				for (int k = 0; k < m; k++) {
-					int ind = narek.find(s[i][k]);
-					if (ind == -1) continue; 
-
-					if (next == ind) { next = (next + 1) % 5; cnt++; }
-					else cnt--;
-				}
-				ndp[next] = max(ndp[next], dp[j] + cnt);
-			}
-			dp = ndp;
+        string s; int q;
+		cin >> s >> q;
+		int present = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.substr(i, 4) == "1100") present++;
 		}
-		int ans = 0;
-		for (int i = 0; i < 5; i++) ans = max(ans, dp[i] - 2 * i);
-		cout << ans << endl;
+		for (int i = 0; i < q; i++) {
+			int idx, v; cin >> idx >> v;
+			idx--;
+			if (partOf(s, idx)) present--;
+			s[idx] = (v == 1) ? '1' : '0';
+			if (partOf(s, idx)) present++;
+			if (present > 0) cout << "YES" << endl;
+			else cout << "NO" << endl;
+		}
     }
 }
