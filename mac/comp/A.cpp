@@ -27,15 +27,22 @@
 using namespace std;
 
 void testcase() {
-
+	int n; cin >> n;
+	vector<int> h(n);
+	for (int& i : h) cin >> i;
+	int mx = 1, cur = 1;
+	for (int i = 1; i < n; i++) {
+		if (h[i] >= h[i - 1]) { cur++; }
+		else cur = 1;
+		mx = max(mx, cur);
+	}
+	cout << n - mx << endl;
 }
 
 int main() {
-	ios::sync_with_stdio(0); 
-	cin.tie(0);
+	ios::sync_with_stdio(0); cin.tie(0);
 	int tc = 1; 
 	cin >> tc;
-	for (int t = 0; t < tc; t++)
-		testcase();
+	for (int t = 0; t < tc; t++) testcase();
 	return 0;
 }

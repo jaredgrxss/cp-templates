@@ -27,7 +27,10 @@
 using namespace std;
 
 void testcase() {
-
+	int n; cin >> n;
+	vector<int> a(n);
+	for (int& i : a) cin >> i;
+	
 }
 
 int main() {

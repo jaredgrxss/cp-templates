@@ -1,24 +1,21 @@
 a:
-	g++ A.cpp -o a.exe
-	a.exe
+	g++ A.cpp -o a.out
+	./a.out
 b:
-	g++ B.cpp -o b.exe 
-	b.exe
+	g++ B.cpp -o b.out 
+	./b.out
 b2: 
-	g++ B2.cpp -o b2.exe
-	b2.exe
+	g++ B2.cpp -o b2.out
+	./b2.out
 c:
-	g++ C.cpp -o c.exe 
-	c.exe
+	g++ C.cpp -o c.out 
+	./c.out
 d:
-	g++ D.cpp -o d.exe
-	d.exe
+	g++ D.cpp -o d.out
+	./d.out
 e:
-	g++ E.cpp -o e.exe
-	e.exe
+	g++ E.cpp -o e.out
+	./e.out
 f:
-	g++ F.cpp -o f.exe
-	f.exe
-practice:
-	g++ practice.cpp -o practice.exe
-	practice.exe
+	g++ F.cpp -o f.out
+	./f.out
